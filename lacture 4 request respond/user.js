@@ -5,25 +5,45 @@ const server=http.createServer((req,res)=>{
     if(req.url==='/'){
     res.setHeader('Content-Type','text/html');
     res.write('<html>');
-    res.write('<head><title>Complete Coding</title></head>');
+    res.write('<head><title>Myntra</title></head>');
     res.write('</html>');
     res.write('<body>');
+    //create navigation links bar
+    res.write('<nav><ul>');
+    res.write('<li><a href="/">Home</a></li>');
+    res.write('<li><a href="/product">Products</a></li>');
+    res.write('<li><a href="/men">Men</a></li>');
+    res.write('<li><a href="women">Women</a></li>');
+    res.write('<li><a href="/kids">Kids</a></li>');
+    res.write('<li><a href="cart">Cart</a></li>')
+    res.write('</ul></nav>');
     res.write('<h1>Welcome to Home</h1>');
-    res.write('<form action="/product" method="POST">');
-    res.write('<input type="text" name="name" placeholder="Enter your name">');
-    res.write('<br><label for="male">Male</label>');
-    res.write('<input type="radio" name="gender" value="male" id="male">');
-    res.write('<label for="female">Female</label>');
-    res.write('<input type="radio" name="gender" value="female" id="female">');
-    res.write('<br><button type="submit">Submit</button>');
     res.write('</body>');
+    }
+    else if(req.url==='/men'){
+    res.setHeader('Content-Type','text/html');
+    res.write('<h2>Welcome to Men</h2>')
     return res.end();
     }
-    else if(req.url.toUpperCase==='/product' && req.method==='POST'){
-        fs.writeFile('user.text','Gautam Tharu');
-        res.statusCode=302;//status code for redirect
-        res.setHeader('Location','/');
-        return res.end();
+    else if(req.url==='/product'){
+    res.setHeader('Content-Type','text/html');
+    res.write('<h2>Welcome to product</h2>');
+    return res.end();
+    }
+    else if(req.url==='/kids'){
+    res.setHeader('Content-Type','text/html');
+    res.write('<h2>Welcome to Kids</h2>')
+    return res.end();
+    }
+    else if(req.url==='/women'){
+    res.setHeader('Content-Type','text/html');
+    res.write('<h2>Welcome to Women</h2>')
+    return res.end();
+    }
+    else if(req.url==='/cart'){
+    res.setHeader('Content-Type','text/html');
+    res.write('<h2>Welcome to Cart</h2>')
+    return res.end();
     }
 });
 const PORT=3001;
