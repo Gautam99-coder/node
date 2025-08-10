@@ -1,5 +1,5 @@
-
 const http=require('http');
+const fs=require('fs');
 const server=http.createServer((req,res)=>{
     console.log(req.url,req.method,req.headers);
     if(req.url==='/'){
@@ -19,13 +19,11 @@ const server=http.createServer((req,res)=>{
     res.write('</body>');
     return res.end();
     }
-    else if(req.url==='/product'){
-    res.setHeader('Content-Type','text/html');
-    res.write('<html>');
-    res.write('<head><title>Complete Coding</title></head>');
-    res.write('</html>');
-    res.write('<body><h1>Checkout our products</h1></body>');
-    return res.end();
+    else if(req.url.toUpperCase==='/product' && req.method==='POST'){
+        fs.writeFile('user.text','Gautam Tharu');
+        res.statusCode=302;//status code for redirect
+        res.setHeader('Location','/');
+        return res.end();
     }
 });
 const PORT=3001;
