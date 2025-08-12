@@ -5,7 +5,7 @@ const server=http.createServer((req,res)=>{
     if(req.url==='/'){
     res.setHeader('Content-Type','text/html');
     res.write('<html>');
-    res.write('<head><title>Myntra</title></head>');
+    res.write('<head><title>Myn</title></head>');
     res.write('</html>');
     res.write('<body>');
     //create navigation links bar
