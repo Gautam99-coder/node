@@ -2,8 +2,8 @@
 const http = require('http');
 const fs = require('fs');
 const { json } = require('stream/consumers');
-const server = http.createServer((req, res) => {
-    console.log(req.url, req.method, req.headers);
+const UserRequestHandler=(req, res) => {
+    console.log(req.url, req.method);
     if (req.url === '/') {
         res.setHeader('Content-Type', 'text/html');
         res.write('<html>');
@@ -45,8 +45,5 @@ const server = http.createServer((req, res) => {
         return res.end();
     }
 }
-);
-const PORT = 3001;
-server.listen(PORT, () => {
-    console.log(`Server running on address http://localhost:${PORT}`);
-});
+
+module.exports = UserRequestHandler;
