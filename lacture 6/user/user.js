@@ -44,7 +44,7 @@ const UserRequestHandler=(req, res) => {
         res.statusCode = 404;
         res.setHeader('Content-Type', 'text/html');
         res.write('<html><body><h1>Page Not Found</h1></body></html>');
-        return res.end();
+        // return res.end();
     }
 }
 
