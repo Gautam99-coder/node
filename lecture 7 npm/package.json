@@ -1,0 +1,20 @@
+{
+  "name": "npm_test",
+  "version": "1.0.0",
+  "description": "this project been created learn about npm",
+  "repository": {
+    "type": "git",
+    "url": "node"
+  },
+  "license": "ISC",
+  "author": "gautam coder",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
