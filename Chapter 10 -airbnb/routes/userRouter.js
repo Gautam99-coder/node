@@ -1,10 +1,10 @@
+//core modules
+const path = require("path");
 const express = require("express");
 const userRouter = express.Router();
 
 userRouter.get("/", (req, res) => {
-    res.send(`<h1>Hello, Welcome to Airbnb</h1>
-        <a href="/add_home">Add Home</a>
-        `);
+    res.send(path.join(__dirname,'../','view','home.html'));;
 });
 
 module.exports = userRouter;
