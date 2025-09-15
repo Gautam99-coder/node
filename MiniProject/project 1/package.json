@@ -1,0 +1,24 @@
+{
+  "name": "project-1",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+"scripts": {
+  "tailwind": "tailwindcss -i ./views/input.css -o ./public/outp.css --watch",
+  "start": "concurrently \"nodemon index.js\" \"npm run tailwind\"",
+  "build:css": "tailwindcss -i ./views/input.css -o ./public/outp.css"},
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.10",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13"
+  }
+}

@@ -1,0 +1,13 @@
+<%- include('partials/header') %>
+
+<h1 class="text-2xl font-bold mb-4">Users</h1>
+<ul class="space-y-3">
+  <% users.forEach(u => { %>
+    <li class="p-3 bg-white rounded shadow">
+      <a class="text-lg" href="/users/<%= u.id %>"><%= u.name %></a>
+      <div class="text-sm text-gray-500">Joined: <%= formatDate(u.joined) %></div>
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('partials/footer') %>
