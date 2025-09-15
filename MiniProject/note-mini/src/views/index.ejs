@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <%- include('./head') %>
+</head>
+<body>
+  <%- include('./header') %>
+  <p>Number of notes: <span id="note-count">—</span></p>
+  <h1 class="text-red"><%= title %></h1>
+  <% if (notes && notes.length) { %>
+    <ul>
+      <% notes.forEach(n => { %>
+        <li><a href="/notes/<%= n.id %>"><%= n.title %></a></li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No notes available.</p>
+  <% } %>
+  <%- include('./footer') %>
+</body>
+</html>
