@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Airbnb Mini - Home</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-100 font-sans">
+  <div class="max-w-4xl mx-auto p-6">
+    <header class="flex items-center justify-between mb-6">
+      <h1 class="text-3xl font-bold">Airbnb Mini</h1>
+      <a href="/homes/new" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Add a Home</a>
+    </header>
+
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Available Homes</h2>
+
+      <% if (homes.length === 0) { %>
+        <div class="p-6 bg-white rounded shadow">
+          <p class="text-gray-600">No homes yet. Click <a href="/homes/new" class="text-blue-600 underline">Add a Home</a> to create one.</p>
+        </div>
+      <% } else { %>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <% homes.forEach(home => { %>
+            <div class="bg-white p-4 rounded shadow">
+              <h3 class="text-lg font-bold"><%= home.title %></h3>
+              <p class="text-sm text-gray-500"><%= home.location %></p>
+              <p class="mt-2 font-semibold">₹ <%= home.price %> / night</p>
+              <% if (home.description) { %>
+                <p class="mt-2 text-gray-700"><%= home.description %></p>
+              <% } %>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </section>
+  </div>
+</body>
+</html>
