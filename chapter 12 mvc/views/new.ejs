@@ -1,44 +1,43 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Add Home - Airbnb Mini</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="min-h-screen bg-gray-100 font-sans">
-  <div class="max-w-xl mx-auto p-6">
-    <header class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-bold">Add a Home</h1>
-      <a href="/" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">Home</a>
-    </header>
+  <%- include('partials/head', { title: 'Add Home - Airbnb Mini' }) %>
+  <body class="min-h-screen bg-gray-100 font-sans">
+    <div class="max-w-xl mx-auto p-6">
+      <header class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold">Add a Home</h1>
+        <a href="/" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">Home</a>
+      </header>
 
-    <form action="/homes" method="POST" class="bg-white p-6 rounded shadow space-y-4">
-      <div>
-        <label class="block text-sm font-medium">Title *</label>
-        <input name="title" required class="mt-1 block w-full border rounded p-2" placeholder="Cozy studio in city center">
-      </div>
+      <% if (typeof error !== 'undefined') { %>
+        <div class="mb-4 p-3 bg-red-100 text-red-700 rounded"><%= error %></div>
+      <% } %>
 
-      <div>
-        <label class="block text-sm font-medium">Location *</label>
-        <input name="location" required class="mt-1 block w-full border rounded p-2" placeholder="Mumbai, India">
-      </div>
+      <form action="/homes" method="POST" class="bg-white p-6 rounded shadow space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Title *</label>
+          <input name="title" required class="mt-1 block w-full border rounded p-2" placeholder="Cozy studio in city center">
+        </div>
 
-      <div>
-        <label class="block text-sm font-medium">Price per night (number) *</label>
-        <input name="price" type="number" required class="mt-1 block w-full border rounded p-2" placeholder="1200">
-      </div>
+        <div>
+          <label class="block text-sm font-medium">Location *</label>
+          <input name="location" required class="mt-1 block w-full border rounded p-2" placeholder="Mumbai, India">
+        </div>
 
-      <div>
-        <label class="block text-sm font-medium">Description</label>
-        <textarea name="description" rows="4" class="mt-1 block w-full border rounded p-2" placeholder="A cosy place..."></textarea>
-      </div>
+        <div>
+          <label class="block text-sm font-medium">Price per night (number) *</label>
+          <input name="price" type="number" required class="mt-1 block w-full border rounded p-2" placeholder="1200">
+        </div>
 
-      <div class="flex items-center gap-3">
-        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Add Home</button>
-        <a href="/" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Cancel</a>
-      </div>
-    </form>
-  </div>
-</body>
+        <div>
+          <label class="block text-sm font-medium">Description</label>
+          <textarea name="description" rows="4" class="mt-1 block w-full border rounded p-2" placeholder="A cosy place..."></textarea>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Add Home</button>
+          <a href="/" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </body>
 </html>

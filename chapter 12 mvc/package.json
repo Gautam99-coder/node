@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "tailwind":"npx tailwindcss/cli -i/views/input.css -o ./public/style.css --watch",
+    "build-css":"npx tailwindcss/cli -i/views/input.css -o ./public/style.css --minify",
+    "start": "nodemon run server.js & npm run tailwind"
   },
   "keywords": [],
   "author": "",
