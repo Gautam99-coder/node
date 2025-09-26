@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tasks</title>
+
+    <!-- Option A: Tailwind via CDN (quick) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Option B: Local built Tailwind CSS (uncomment if you build it)
+    <link rel="stylesheet" href="/css/tailwind.css" />
+    -->
+  </head>
+  <body class="bg-gray-100 min-h-screen font-sans">
+    <div class="container mx-auto px-4 py-8">
+      <%- include('partials/flash', { flash: flash }) %>
+      <%- body %>
+    </div>
+  </body>
+</html>
