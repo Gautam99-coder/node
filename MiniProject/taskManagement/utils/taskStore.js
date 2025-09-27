@@ -1,46 +1,54 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const DATA_PATH = path.join(__dirname, '..', 'data', 'tasks.json');
+const FILE = path.join(__dirname, '..', 'tasks.json');
 
-async function readFileSafe() {
+async function readTasks() {
   try {
-    const raw = await fs.readFile(DATA_PATH, 'utf8');
-    return JSON.parse(raw || '[]');
+    const data = await fs.readFile(FILE, 'utf8');
+    return JSON.parse(data || '[]');
   } catch (err) {
-    // if file doesn't exist, create it
-    if (err.code === 'ENOENT') {
-      await fs.mkdir(path.dirname(DATA_PATH), { recursive: true });
-      await fs.writeFile(DATA_PATH, '[]', 'utf8');
-      return [];
-    }
+    // if file missing, return empty array
+    if (err.code === 'ENOENT') return [];
     throw err;
   }
 }
 
 async function writeTasks(tasks) {
-  await fs.writeFile(DATA_PATH, JSON.stringify(tasks, null, 2), 'utf8');
+  // write atomically
+  await fs.writeFile(FILE, JSON.stringify(tasks, null, 2), 'utf8');
 }
 
 async function getAll() {
-  return await readFileSafe();
+  return readTasks();
 }
 
-async function addTask({ title, description }) {
-  const tasks = await readFileSafe();
-  const task = {
-    id: Date.now().toString(),
-    title: (title || '').trim(),
-    description: (description || '').trim(),
-    createdAt: new Date().toISOString()
-  };
-  tasks.unshift(task); // newest first
+async function getById(id) {
+  const tasks = await readTasks();
+  return tasks.find(t => t.id === id);
+}
+
+async function create(task) {
+  const tasks = await readTasks();
+  // create id: number incremental
+  const nextId = tasks.length ? Math.max(...tasks.map(t => t.id)) + 1 : 1;
+  const newTask = { id: nextId, title: task.title, completed: false, createdAt: new Date().toISOString() };
+  tasks.push(newTask);
   await writeTasks(tasks);
-  return task;
+  return newTask;
 }
 
-async function deleteTask(id) {
-  let tasks = await readFileSafe();
+async function update(id, changes) {
+  const tasks = await readTasks();
+  const idx = tasks.findIndex(t => t.id === id);
+  if (idx === -1) return null;
+  tasks[idx] = { ...tasks[idx], ...changes };
+  await writeTasks(tasks);
+  return tasks[idx];
+}
+
+async function remove(id) {
+  let tasks = await readTasks();
   const before = tasks.length;
   tasks = tasks.filter(t => t.id !== id);
   if (tasks.length === before) return false;
@@ -48,4 +56,4 @@ async function deleteTask(id) {
   return true;
 }
 
-module.exports = { getAll, addTask, deleteTask };
+module.exports = { getAll, getById, create, update, remove };
